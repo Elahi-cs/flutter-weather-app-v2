@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_app_v2/components/weather_item.dart';
@@ -34,7 +33,7 @@ class _DetailPageState extends State<DetailPage> {
 
       String weatherName = weatherData[index]["day"]["condition"]["text"];
       String weatherIcon =
-          weatherName.replaceAll(' ', '').toLowerCase() + ".png";
+          "${weatherName.replaceAll(' ', '').toLowerCase()}.png";
 
       int minTemperature = weatherData[index]["day"]["mintemp_c"].toInt();
       int maxTemperature = weatherData[index]["day"]["maxtemp_c"].toInt();
@@ -119,9 +118,9 @@ class _DetailPageState extends State<DetailPage> {
                         clipBehavior: Clip.none,
                         children: [
                           Positioned(
+                            width: 150,
                             child: Image.asset("assets/" +
                                 getForecastWeather(0)["weatherIcon"]),
-                            width: 150,
                           ),
                           Positioned(
                               top: 150,
@@ -327,10 +326,8 @@ class _DetailPageState extends State<DetailPage> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    getForecastWeather(0)[
-                                                                "chanceOfRain"]
-                                                            .toString() +
-                                                        "%",
+                                                    "${getForecastWeather(0)[
+                                                                "chanceOfRain"]}%",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.grey,
@@ -475,10 +472,8 @@ class _DetailPageState extends State<DetailPage> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    getForecastWeather(1)[
-                                                                "chanceOfRain"]
-                                                            .toString() +
-                                                        "%",
+                                                    "${getForecastWeather(1)[
+                                                                "chanceOfRain"]}%",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.grey,
@@ -623,10 +618,8 @@ class _DetailPageState extends State<DetailPage> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    getForecastWeather(2)[
-                                                                "chanceOfRain"]
-                                                            .toString() +
-                                                        "%",
+                                                    "${getForecastWeather(2)[
+                                                                "chanceOfRain"]}%",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.grey,

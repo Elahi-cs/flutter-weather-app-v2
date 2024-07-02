@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _cityController = TextEditingController();
   final Constants _constants = Constants();
 
-  static String API_KEY = ''; //Paste Your API Here
+  static String API_KEY = '2726e2900abc479cbdb174853240207'; //Paste Your API Here
 
   String location = 'London'; //Default location
   String weatherIcon = 'heavycloud.png';
@@ -38,9 +37,7 @@ class _HomePageState extends State<HomePage> {
   String currentWeatherStatus = '';
 
   //API Call
-  String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=" +
-      API_KEY +
-      "&days=7&q=";
+  String searchWeatherAPI = "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY&days=7&q=";
 
   void fetchWeatherData(String searchText) async {
     try {
@@ -65,7 +62,7 @@ class _HomePageState extends State<HomePage> {
         //updateWeather
         currentWeatherStatus = currentWeather["condition"]["text"];
         weatherIcon =
-            currentWeatherStatus.replaceAll(' ', '').toLowerCase() + ".png";
+            "${currentWeatherStatus.replaceAll(' ', '').toLowerCase()}.png";
         temperature = currentWeather["temp_c"].toInt();
         windSpeed = currentWeather["wind_kph"].toInt();
         humidity = currentWeather["humidity"].toInt();
@@ -87,7 +84,7 @@ class _HomePageState extends State<HomePage> {
 
     if (wordList.isNotEmpty) {
       if (wordList.length > 1) {
-        return wordList[0] + " " + wordList[1];
+        return "${wordList[0]} ${wordList[1]}";
       } else {
         return wordList[0];
       }
@@ -250,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(
                     height: 160,
-                    child: Image.asset("assets/" + weatherIcon),
+                    child: Image.asset("assets/$weatherIcon"),
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,10 +375,9 @@ class _HomePageState extends State<HomePage> {
 
                         String forecastWeatherName =
                             hourlyWeatherForecast[index]["condition"]["text"];
-                        String forecastWeatherIcon = forecastWeatherName
+                        String forecastWeatherIcon = "${forecastWeatherName
                                 .replaceAll(' ', '')
-                                .toLowerCase() +
-                            ".png";
+                                .toLowerCase()}.png";
 
                         String forecastTemperature =
                             hourlyWeatherForecast[index]["temp_c"]
@@ -417,7 +413,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Image.asset(
-                                'assets/' + forecastWeatherIcon,
+                                'assets/$forecastWeatherIcon',
                                 width: 20,
                               ),
                               Row(
